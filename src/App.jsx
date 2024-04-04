@@ -1,6 +1,8 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ErrorPage from "./components/ErrorPage.jsx";
+// import ErrorPage from "./components/ErrorPage.jsx";
+const Community = lazy(() => import("./components/Community.jsx"));
+const About = lazy(() => import("./components/About.jsx"));
 const Home = lazy(() => import("./pages/Home"));
 const Header = lazy(() => import("./components/Header.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
@@ -31,6 +33,14 @@ const App = () => {
 					<Route
 						path="/coins/:id"
 						element={<CoinInfo />}
+					/>
+					<Route
+						path="/about"
+						element={<About />}
+					/>
+					<Route
+						path="/community"
+						element={<Community />}
 					/>
 				</Routes>
 			</Suspense>

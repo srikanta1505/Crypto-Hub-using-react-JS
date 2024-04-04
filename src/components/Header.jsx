@@ -23,7 +23,7 @@ const Header = () => {
 		};
 		const FinalDelayedResult = () => {
 			clearTimeout(timerID);
-			timerID = setTimeout(SearchResult, 2000);
+			timerID = setTimeout(SearchResult, 1000);
 		};
 
 		FinalDelayedResult();
@@ -45,27 +45,28 @@ const Header = () => {
 
 	return (
 		<Fragment>
-			<header className="w-full h-16 bg-black flex justify-evenly items-center">
-				<div>Crypto Hub</div>
+			<header className=" text-white w-full px-10 h-16 bg-gray-600 flex justify-between items-center">
+				<div className="font-extrabold text-2xl">Crypto Hub</div>
 				<div>
 					<input
+						className="h-9 pl-4 w-96 outline-none text-gray-600 border-2 border-solid border-gray-400 rounded-l-full"
 						type="text"
 						placeholder="search..."
 						value={search}
 						onChange={InputChangeHandler}
 					/>
+					{search === "" ? (
+						<span className="inline-block cursor-pointer font-bold outline-none h-9 w-12 pl-2 text-xl border-2 border-solid rounded-r-full bg-gray-500 border-gray-500">
+							🔍
+						</span>
+					) : (
+						<span className=" inline-block cursor-pointer font-bold outline-none h-9 w-12 pl-3 text-xl border-2 border-solid rounded-r-full bg-gray-500 border-gray-500">
+							X
+						</span>
+					)}
 				</div>
-				{/* Handling Search data */}
+
 				{/* <div>
-					{apiData.map((item, index) => (
-						<div key={index}>
-							{item.coins.map((coinItem) => (
-								<div key={coinItem.id}>{coinItem.id}</div>
-							))}
-						</div>
-					))}
-				</div> */}
-				<div>
 					<span className="text-white"></span>
 					{apiData !== "" &&
 						apiData.coins.map((item) => (
@@ -76,9 +77,9 @@ const Header = () => {
 								{item.name}
 							</span>
 						))}
-				</div>
+				</div> */}
 				{/* NAvigation menu */}
-				<div>
+				<div className="flex flex-wrap justify-between gap-4 items-center text-xl font-bold mr-5">
 					<NavLink
 						to="/"
 						className={`${
@@ -111,6 +112,25 @@ const Header = () => {
 					</NavLink>
 				</div>
 			</header>
+			<div className=" flex items-center justify-center">
+				{apiData !== "" && (
+					<div className=" fixed top-14 left-1/3 flex justify-center mt-2 items-center flex-wrap h-96 w-96 overflow-auto rounded-md ">
+						{apiData.coins.map((item) => (
+							<div
+								className="flex justify-start items-center gap-5 h-9 w-96 bg-gray-600 z-50 text-white hover:bg-gray-500
+								"
+								key={item.id}
+							>
+								<img
+									src={item.thumb}
+									className="h-4 w-4 "
+								/>
+								<span>{item.id}</span>
+							</div>
+						))}
+					</div>
+				)}
+			</div>
 		</Fragment>
 	);
 };

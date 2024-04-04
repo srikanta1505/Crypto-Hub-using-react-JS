@@ -102,7 +102,7 @@ const CoinInfo = () => {
 								<p className="mt-5">
 									Rank: #{coinInfo.market_cap_rank}
 								</p>
-								<p className="mt-5">
+								<p className="my-5">
 									Current_Price:{" "}
 									{
 										coinInfo.market_data.current_price[
@@ -111,7 +111,12 @@ const CoinInfo = () => {
 									}{" "}
 									{currencySymbol}
 								</p>
-								<p></p>
+								<a
+									className="text-blue-500 "
+									href={coinInfo.links.homepage}
+								>
+									website↗️
+								</a>
 							</div>
 						</div>
 
